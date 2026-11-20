@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Мои пушистые друзья | 3 класс</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #fff9c4 0%, #b3e5fc 50%, #f8bbd0 100%);
+    color: #3e2723;
+    min-height: 100vh;
+    padding: 20px;
+    background-attachment: fixed;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255, 183, 77, 0.3) 0%, transparent 30%),
+      radial-gradient(circle at 90% 80%, rgba(240, 98, 146, 0.25) 0%, transparent 30%),
+      radial-gradient(circle at 50% 50%, rgba(129, 212, 250, 0.2) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  header {
+    text-align: center;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    border: 4px dashed #ffb74d;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .paws {
+    font-size: 2em;
+    letter-spacing: 10px;
+    animation: walk 2s infinite;
+  }
+  
+  @keyframes walk {
+    0%, 100% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+  }
+  
+  h1 {
+    font-size: 2.3em;
+    color: #e65100;
+    margin: 15px 0;
+    text-shadow: 2px 2px 0 #fff9c4;
+  }
+  
+  .subtitle {
+    color: #6a1b9a;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .meta {
+    margin-top: 15px;
+    color: #6d4c41;
+    font-size: 0.95em;
+    background: #fff9c4;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+  }
+  
+  section {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    transition: transform 0.3s;
+  }
+  
+  section:hover {
+    transform: translateY(-3px);
+  }
+  
+  section.theory { border-color: #81d4fa; }
+  section.vocab { border-color: #ffab91; }
+  section.grammar { border-color: #ce93d8; }
+  section.exercise1 { border-color: #a5d6a7; }
+  section.exercise2 { border-color: #ffcc80; }
+  section.exercise3 { border-color: #f48fb1; }
+  section.homework { border-color: #9fa8da; }
+  
+  h2 {
+    color: #d84315;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  h2 .emoji {
+    font-size: 1.3em;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .intro {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #4e342e;
+    background: #fff9c4;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border-left: 5px solid #ffb74d;
+  }
+  
+  .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .pet-card {
+    background: linear-gradient(135deg, #fff9c4, #ffe0b2);
+    border: 3px solid #ffb74d;
+    border-radius: 20px;
+    padding: 15px 10px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .pet-card:hover {
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+  }
+  
+  .pet-card .pet-emoji {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 8px;
+    animation: wiggle 3s infinite;
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+  
+  .pet-card .pet-en {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e65100;
+    display: block;
+  }
+  
+  .pet-card .pet-ru {
+    font-size: 0.9em;
+    color: #6d4c41;
+    margin-top: 3px;
+  }
+  
+  .grammar-box {
+    background: linear-gradient(135deg, #e1bee7, #f8bbd0);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 3px dashed #8e24aa;
+  }
+  
+  .grammar-box h3 {
+    color: #6a1b9a;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+  }
+  
+  .grammar-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 15px;
+    font-size: 1.1em;
+    flex-wrap: wrap;
+  }
+  
+  .grammar-row .subject {
+    background: #ffcc80;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #e65100;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .grammar-row .verb {
+    background: #a5d6a7;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #1b5e20;
+    min-width: 100px;
+    text-align: center;
+  }
+  
+  .grammar-row .example-text {
+    color: #4e342e;
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .dialogue {
+    background: #e3f2fd;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 3px solid #42a5f5;
+  }
+  
+  .dialogue-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 15px;
+  }
+  
+  .dialogue-line .speaker {
+    font-size: 2em;
+    flex-shrink: 0;
+  }
+  
+  .dialogue-line .text {
+    font-size: 1.05em;
+    line-height: 1.5;
+  }
+  
+  .dialogue-line .text strong {
+    color: #d84315;
+  }
+  
+  .exercise {
+    background: #fafafa;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 2px dashed #bdbdbd;
+  }
+  
+  .task-list {
+    list-style: none;
+    counter-reset: task;
+  }
+  
+  .task-list li {
+    counter-increment: task;
+    padding: 12px 12px 12px 50px;
+    position: relative;
+    line-height: 1.7;
+    color: #3e2723;
+    margin: 8px 0;
+    background: white;
+    border-radius: 15px;
+    font-size: 1.05em;
+    border-left: 4px solid #ffb74d;
+  }
+  
+  .task-list li::before {
+    content: counter(task);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff7043;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 3px dotted #ff7043;
+    color: #ff7043;
+    padding: 0 8px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .example-box {
+    background: #fff9c4;
+    border: 2px solid #fbc02d;
+    border-radius: 15px;
+    padding: 12px 18px;
+    margin: 10px 0;
+    font-size: 1.05em;
+    color: #4e342e;
+  }
+  
+  .example-box::before {
+    content: '💡 Пример: ';
+    font-weight: bold;
+    color: #f57f17;
+  }
+  
+  .tip {
+    background: #e8f5e9;
+    border-left: 5px solid #66bb6a;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin: 15px 0;
+    font-size: 1em;
+    color: #1b5e20;
+  }
+  
+  .tip strong { color: #2e7d32; }
+  
+  .homework-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .homework-list li {
+    padding: 10px 10px 10px 40px;
+    position: relative;
+    margin: 8px 0;
+    background: #e8eaf6;
+    border-radius: 12px;
+    line-height: 1.6;
+    color: #283593;
+  }
+  
+  .homework-list li::before {
+    content: '⭐';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 25px;
+    color: #6d4c41;
+    font-size: 1em;
+    background: white;
+    border-radius: 25px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+  
+  footer .big-emoji {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+  }
+  
+  @media (max-width: 600px) {
+    h1 { font-size: 1.7em; }
+    h2 { font-size: 1.3em; }
+    section { padding: 18px; }
+    .pet-card .pet-emoji { font-size: 2.3em; }
+    .grammar-row { font-size: 1em; }
+    .pets-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="paws">🐾 🐾 🐾 🐾 🐾</div>
+    <h1>Мои пушистые друзья!</h1>
+    <div class="subtitle">My Friends' Pets 🐶 🐱 🐰</div>
+    <div class="meta">📅 20 ноября 2026 г. &nbsp;•&nbsp; 🎓 3 класс &nbsp;•&nbsp; 💻 Урок английского</div>
+  </header>
+
+  <section class="theory">
+    <h2><span class="emoji">👋</span> Hello, friends!</h2>
+    <p class="intro">
+      Сегодня мы поговорим о <strong>питомцах</strong> — наших любимых животных! 🐾<br>
+      Ты узнаешь, как называются животные по-английски, и научишься рассказывать, у кого какой питомец. Готов? Let's go! 🚀
+    </p>
+  </section>
+
+  <section class="vocab">
+    <h2><span class="emoji">📚</span> Новые слова</h2>
+    <p>Посмотри на животных и запомни, как они называются по-английски. Наведи мышкой на карточку — она пошевелится! 😊</p>
+    
+    <div class="pets-grid">
+      <div class="pet-card">
+        <span class="pet-emoji">🐶</span>
+        <span class="pet-en">a dog</span>
+        <span class="pet-ru">собака</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐱</span>
+        <span class="pet-en">a cat</span>
+        <span class="pet-ru">кошка</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐰</span>
+        <span class="pet-en">a rabbit</span>
+        <span class="pet-ru">кролик</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐹</span>
+        <span class="pet-en">a hamster</span>
+        <span class="pet-ru">хомяк</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐦</span>
+        <span class="pet-en">a parrot</span>
+        <span class="pet-ru">попугай</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐢</span>
+        <span class="pet-en">a turtle</span>
+        <span class="pet-ru">черепаха</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐠</span>
+        <span class="pet-en">a fish</span>
+        <span class="pet-ru">рыбка</span>
+      </div>
+      <div class="pet-card">
+        <span class="pet-emoji">🐭</span>
+        <span class="pet-en">a mouse</span>
+        <span class="pet-ru">мышка</span>
+      </div>
+    </div>
+    
+    <div class="tip">
+      <strong>💡 Запомни:</strong> слово <strong>pet</strong> — это «домашний питомец». А ещё есть слово <strong>funny</strong> — «смешной» и <strong>cute</strong> — «милый»!
+    </div>
+  </section>
+
+  <section class="grammar">
+    <h2><span class="emoji">🎯</span> Как рассказать о питомце?</h2>
+    <p>Чтобы сказать «У меня есть…», мы используем волшебные слова <strong style="color:#d84315">have got</strong> и <strong style="color:#d84315">has got</strong>.</p>
+    
+    <div class="grammar-box">
+      <h3>✨ Запомни правило:</h3>
+      <div class="grammar-row">
+        <span class="subject">I / You / We / They</span>
+        <span class="verb">have got</span>
+        <span class="example-text">I <strong>have got</strong> a cat. 🐱</span>
+      </div>
+      <div class="grammar-row">
+        <span class="subject">He / She / It</span>
+        <span class="verb">has got</span>
+        <span class="example-text">She <strong>has got</strong> a dog. 🐶</span>
+      </div>
+    </div>
+    
+    <div class="dialogue">
+      <h3 style="color:#1565c0; margin-bottom:10px;">🗨️ Посмотри, как разговаривают друзья:</h3>
+      <div class="dialogue-line">
+        <span class="speaker">👦</span>
+        <span class="text">Hello! <strong>I have got</strong> a parrot. Its name is Kesha.</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">👧</span>
+        <span class="text">Cool! <strong>I have got</strong> a rabbit. It is cute!</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">👦</span>
+        <span class="text">And <strong>has</strong> your friend <strong>got</strong> a pet?</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">👧</span>
+        <span class="text">Yes! <strong>He has got</strong> a funny hamster!</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="exercise1">
+    <h2><span class="emoji">✏️</span> Упражнение 1. Переведи слова</h2>
+    <p>Запиши в тетрадь номер и <strong>перевод</strong> слова на английский язык. Не забудь написать <strong style="color:#d84315">a</strong> перед словом!</p>
+    
+    <div class="example-box">a dog — собака</div>
+    
+    <div class="exercise">
+      <ol class="task-list">
+        <li>кошка — <span class="blank">...</span></li>
+        <li>попугай — <span class="blank">...</span></li>
+        <li>кролик — <span class="blank">...</span></li>
+        <li>хомяк — <span class="blank">...</span></li>
+        <li>черепаха — <span class="blank">...</span></li>
+        <li>рыбка — <span class="blank">...</span></li>
+        <li>мышка — <span class="blank">...</span></li>
+        <li>собака — <span class="blank">...</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="exercise2">
+    <h2><span class="emoji">🔍</span> Упражнение 2. Вставь have got или has got</h2>
+    <p>Запиши в тетрадь номер и <strong>полное предложение</strong>. Будь внимателен: смотри, <em>кто</em> имеет питомца!</p>
+    
+    <div class="example-box">My friend <strong>has got</strong> a cat.</div>
+    
+    <div class="exercise">
+      <ol class="task-list">
+        <li>I <span class="blank">(have got / has got)</span> a funny parrot.</li>
+        <li>My sister <span class="blank">(have got / has got)</span> a cute rabbit.</li>
+        <li>Tom and Jerry <span class="blank">(have got / has got)</span> a big dog.</li>
+        <li>She <span class="blank">(have got / has got)</span> a green turtle.</li>
+        <li>We <span class="blank">(have got / has got)</span> a little mouse.</li>
+        <li>My friend Ann <span class="blank">(have got / has got)</span> a yellow fish.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="exercise3">
+    <h2><span class="emoji">🌟</span> Упражнение 3. Расскажи о питомцах друзей</h2>
+    <p>Прочитай подсказки и запиши в тетрадь <strong>4 предложения</strong> о питомцах друзей по образцу.</p>
+    
+    <div class="example-box">Ben / a dog → <strong>Ben has got a dog.</strong></div>
+    
+    <div class="exercise">
+      <ol class="task-list">
+        <li>Ann / a cat</li>
+        <li>Tom and Sam / a parrot</li>
+        <li>Lisa / a rabbit</li>
+        <li>Max / a hamster</li>
+      </ol>
+    </div>
+    
+    <div class="tip">
+      <strong>💡 Подсказка:</strong> если питомец один — пишем про одного человека (<strong>has got</strong>). Если друзей двое — пишем <strong>have got</strong>!
+    </div>
+  </section>
+
+  <section class="homework">
+    <h2><span class="emoji">🏠</span> Домашнее задание</h2>
+    <ul class="homework-list">
+      <li>Выучи 8 новых слов о животных 🐾</li>
+      <li>Нарисуй питомца своего друга (или выдуманного!) и подпиши рисунок по-английски: <em>"This is my friend's cat. It is cute!"</em> 🎨</li>
+      <li>Спроси у 3 друзей: «Have you got a pet?» — и запиши их ответы в тетрадь 🗨️</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span class="big-emoji">🐾 ❤️ 🐾</span>
+    <strong>Good job, friends!</strong> Ты сегодня большой молодец!<br>
+    <small>Урок английского языка • 3 класс • 20.11.2026</small>
+  </footer>
+
+</div>
+
+<script>
+  // Лёгкая анимация появления секций
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((s, i) => {
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(20px)';
+      s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      setTimeout(() => {
+        s.style.opacity = '1';
+        s.style.transform = 'translateY(0)';
+      }, 150 * i);
+    });
+    
+    // При клике на карточку животного — лёгкий "прыжок"
+    document.querySelectorAll('.pet-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.style.transform = 'scale(1.15) rotate(5deg)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</body>
+</html>
